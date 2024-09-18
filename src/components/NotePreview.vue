@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-import { Note } from "../store"
+import { Note, Task } from "../store"
+import IconDash from "../assets/icon-dash.vue"
+import IconCheck from "../assets/icon-check.vue"
 
 // This sets the number of tasks to preview for each note
 const tasksPreviewCount = 2
@@ -8,6 +10,10 @@ const tasksPreviewCount = 2
 const props = defineProps({
 	note: Object as PropType<Note>,
 })
+
+function chooseIcon(task: Task) {
+	return task.status ? IconCheck : IconDash
+}
 </script>
 
 <template>
@@ -18,6 +24,11 @@ const props = defineProps({
 				v-for="task of props.note.tasks.slice(0, tasksPreviewCount)"
 				:key="task.id"
 			>
+				<component
+					class="statusIcon"
+					:class="{ check: task.status }"
+					:is="chooseIcon(task)"
+				/>
 				{{ task.text }}
 			</li>
 			<li v-if="props.note.tasks.length > tasksPreviewCount">…</li>
@@ -46,5 +57,14 @@ div:hover {
 
 h3 {
 	margin: 0;
+}
+.statusIcon {
+	width: 16px;
+	height: 16px;
+	fill: white;
+	transform: translateY(3px);
+}
+.statusIcon.check {
+	fill: rgb(0, 227, 136);
 }
 </style>
