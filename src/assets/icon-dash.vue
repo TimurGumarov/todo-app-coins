@@ -1,9 +1,7 @@
-<script setup lang="ts"></script>
-
 <template>
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 		<g>
-			<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z" />
+			<path d="M5 11h14v2H5v-2Z" />
 		</g>
 	</svg>
 </template>
