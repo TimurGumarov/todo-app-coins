@@ -9,8 +9,8 @@ const props = defineProps({
 	id: Number,
 })
 
-let newNote = false
-if (props.id === -1) newNote = true
+// let newNote = false
+// if (props.id === -1) newNote = true
 
 const currentNote = store.notes.filter((note) => note.id === props.id)?.pop()
 const bigTitleMinLength = 25
