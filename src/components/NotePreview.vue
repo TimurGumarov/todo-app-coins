@@ -43,16 +43,16 @@ div {
 	gap: 10px;
 	border-radius: 10px;
 	background: linear-gradient(97deg, #202a39 -8.29%, #151d29 70.65%);
-	box-shadow: rgba(18, 18, 18, 0.25) 0px 0 0 0, rgba(0, 0, 0, 0.3) 0px 0 0 0;
+	box-shadow: rgb(17 65 133 / 25%) 0px 0 0 0, rgb(0 0 0 / 30%) 0px 0 0 0;
 	margin: 0;
 	padding: 20px;
 	cursor: pointer;
-	transition: box-shadow 0.2s ease-in-out;
+	transition: box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 div:hover {
-	box-shadow: rgba(18, 18, 18, 0.25) 0px 5px 20px -1px,
-		rgba(0, 0, 0, 0.3) 0px 3px 3px -1px;
+	box-shadow: rgb(17 65 133 / 25%) 0px 5px 20px -1px,
+		rgb(0 0 0 / 30%) 0px 3px 3px -1px;
 }
 
 h3 {

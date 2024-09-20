@@ -13,7 +13,7 @@ import IconAdd from "../assets/icon-add.vue"
 			@click="$emit('enterEditing', note.id)"
 		/>
 		<button class="add-note">
-			<IconAdd :style="{ fill: 'rgb(0 154 92)' }" />
+			<IconAdd class="icon" :style="{ fill: 'rgb(0 154 92)' }" />
 		</button>
 	</div>
 </template>
@@ -35,10 +35,15 @@ import IconAdd from "../assets/icon-add.vue"
 	border: 2px solid rgb(0 154 92 / 50%);
 	box-shadow: rgb(0 189 113 / 20%) 0 0 0 0;
 	border-radius: 10px;
-	transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+	transition: box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+		border-color 0.2s ease-in-out;
 }
 .add-note:hover {
 	border: 2px solid rgb(0 154 92);
 	box-shadow: rgb(0 189 113 / 80%) 0 0 10px 0;
+}
+.add-note .icon {
+	width: 20px;
+	height: 20px;
 }
 </style>

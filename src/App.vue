@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HomePage from "./pages/HomePage.vue"
 import EditPage from "./pages/EditPage.vue"
-import { ref, computed } from "vue"
+import { ref } from "vue"
 
 const appState = ref({
 	inEditing: false,

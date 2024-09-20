@@ -22,21 +22,30 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+h1, .heading1 {
   font-size: 3.2em;
+  font-weight: bold;
   line-height: 1.1;
   text-align: center;
   margin: 0;
 }
 
-h2 {
+h2, .heading2 {
   font-size: 2.2em;
+  font-weight: bold;
   line-height: 1.1;
   margin: 0;
 }
 
-h3 {
+h3, .heading3 {
   font-size: 1.4em;
+  font-weight: bold;
+  line-height: 1.1;
+  margin: 0;
+}
+
+p, .paragraph {
+  font-size: 1.3em;
   line-height: 1.1;
   margin: 0;
 }
