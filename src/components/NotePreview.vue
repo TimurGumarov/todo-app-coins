@@ -5,7 +5,7 @@ import IconDash from "../assets/icon-dash.vue"
 import IconCheck from "../assets/icon-check.vue"
 
 // This sets the number of tasks to preview for each note
-const tasksPreviewCount = 2
+const tasksPreviewCount = 4
 
 const props = defineProps({
 	note: Object as PropType<Note>,
