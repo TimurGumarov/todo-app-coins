@@ -2,6 +2,8 @@
 import { store } from "../store"
 import iconArrowLeft from "../assets/icon-arrow-left.vue"
 import TextInputPreview from "../components/TextInputPreview.vue"
+import CheckBox from "../components/CheckBox.vue"
+import ButtonAdd from "../components/ButtonAdd.vue"
 
 const props = defineProps({
 	id: Number,
@@ -31,9 +33,11 @@ const titleIsBig =
 		<div class="note" v-if="currentNote">
 			<ul v-if="currentNote.tasks?.length">
 				<li v-for="task of currentNote.tasks" :key="task.id">
+					<CheckBox v-model="task.status" />
 					<TextInputPreview class="paragraph" v-model="task.text" />
 				</li>
 			</ul>
+			<ButtonAdd />
 		</div>
 	</div>
 </template>
@@ -64,6 +68,20 @@ button.back {
 	border: none;
 	z-index: 1000;
 }
+button.back:hover::after {
+	content: "Назад";
+	position: absolute;
+	display: block;
+	top: -35px;
+	left: 35%;
+	padding: 4px 8px;
+	line-height: 1.1;
+	color: rgb(0 147 88 / 80%);
+	border: 2px solid rgb(21 84 59 / 80%);
+	border-radius: 8px;
+	background: #161f2c;
+	transform: translateX(-50%);
+}
 button.back .icon {
 	width: 30px;
 	height: 30px;
@@ -81,5 +99,11 @@ button.back .icon {
 	display: flex;
 	flex-flow: column;
 	gap: 10px;
+}
+.note li {
+	display: flex;
+	flex-flow: row;
+	gap: 4px;
+	align-items: center;
 }
 </style>
