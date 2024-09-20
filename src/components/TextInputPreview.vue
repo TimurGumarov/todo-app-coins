@@ -41,7 +41,8 @@ const exitEditing = () => {
 	<div class="wrapper" v-if="isEditing">
 		<textarea
 			v-model="modelText"
-			:class="$attrs.class"
+			v-bind:class="$attrs.class"
+			:class="{ small: props.tag === 'p' }"
 			ref="textareaRef"
 			@focusout="exitEditing"
 		></textarea>
@@ -52,6 +53,7 @@ const exitEditing = () => {
 <style scoped>
 .wrapper {
 	position: relative;
+	width: 100%;
 }
 h1,
 p {
@@ -64,6 +66,9 @@ p {
 	transition: border-color 0.2s ease-in-out;
 	box-sizing: border-box;
 	cursor: text;
+}
+p {
+	border-radius: 8px;
 }
 .icon.edit {
 	position: absolute;
@@ -88,6 +93,7 @@ p:hover .icon {
 }
 textarea {
 	display: block;
+	flex-grow: 1;
 	width: 100%;
 	padding: 8px;
 	margin: 0;
@@ -99,6 +105,9 @@ textarea {
 	field-sizing: content;
 	box-shadow: rgb(0 189 113 / 10%) 0 0 40px 0;
 	box-sizing: border-box;
+}
+textarea.small {
+	border-radius: 8px;
 }
 .icon.save {
 	position: absolute;
