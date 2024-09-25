@@ -98,6 +98,10 @@ h1:hover .icon,
 p:hover .icon {
 	fill: rgb(0 189 113 / 80%);
 }
+.bigTitle {
+	text-align: left;
+	text-indent: 50px;
+}
 textarea {
 	display: block;
 	flex-grow: 1;

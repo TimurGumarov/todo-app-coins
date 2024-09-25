@@ -1,42 +1,64 @@
 <script setup lang="ts">
-import { store } from "../store"
+import { type Note, type Task, store } from "../store"
 import iconArrowLeft from "../assets/icon-arrow-left.vue"
 import TextInputPreview from "../components/TextInputPreview.vue"
 import CheckBox from "../components/CheckBox.vue"
 import ButtonAdd from "../components/ButtonAdd.vue"
+import { computed, PropType, ref } from "vue"
+
+const emit = defineEmits(["exitEditing"])
 
 const props = defineProps({
-	id: Number,
+	note: {
+		type: Object as PropType<Note>,
+		required: true,
+	},
 })
 
-// let newNote = false
-// if (props.id === -1) newNote = true
+const title = ref<string>(props.note.title)
+const tasks = ref<Task[]>(JSON.parse(JSON.stringify(props.note.tasks)))
 
-const currentNote = store.notes.filter((note) => note.id === props.id)?.pop()
-const bigTitleMinLength = 25
-const titleIsBig =
-	currentNote && currentNote.title.length > bigTitleMinLength ? true : false
+const bigTitleMinLength = 23
+const titleIsBig = computed(() =>
+	title.value.length > bigTitleMinLength ? true : false
+)
+
+function saveNote() {
+	props.note.title = title.value
+	props.note.tasks = tasks.value
+}
+
+function createNewTask() {
+	const allTasksIDs = tasks.value.map((task) => task.id)
+	const newID = allTasksIDs.length ? Math.max(...allTasksIDs) + 1 : 1
+	const newTask: Task = { id: newID, status: false, text: "" }
+	tasks.value.push(newTask)
+}
+
+function exit() {
+	saveNote()
+	emit("exitEditing")
+}
 </script>
 
 <template>
-	<button class="back" @click="$emit('exitEditing')">
+	<button class="back" @click="exit">
 		<iconArrowLeft class="icon" :style="{ fill: 'white' }" />
 	</button>
 	<TextInputPreview
 		class="heading1"
 		:class="{ bigTitle: titleIsBig }"
-		v-if="currentNote"
-		v-model="currentNote.title"
+		v-model="title"
 		:tag="'h1'"
 	/>
-	<div class="note" v-if="currentNote">
-		<ul v-if="currentNote.tasks?.length">
-			<li v-for="task of currentNote.tasks" :key="task.id">
+	<div class="note">
+		<ul v-if="tasks.length">
+			<li v-for="task of tasks" :key="task.id">
 				<CheckBox v-model="task.status" />
 				<TextInputPreview class="paragraph" v-model="task.text" />
 			</li>
 		</ul>
-		<ButtonAdd />
+		<ButtonAdd @click="createNewTask" />
 	</div>
 </template>
 

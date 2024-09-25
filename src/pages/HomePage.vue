@@ -11,5 +11,5 @@ import ButtonAdd from "../components/ButtonAdd.vue"
 		:note="note"
 		@click="$emit('enterEditing', note)"
 	/>
-	<ButtonAdd />
+	<ButtonAdd @click="$emit('enterEditing', store.newNote())" />
 </template>

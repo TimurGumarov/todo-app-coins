@@ -2,11 +2,12 @@
 import HomePage from "./pages/HomePage.vue"
 import EditPage from "./pages/EditPage.vue"
 import { ref } from "vue"
+import { Note } from "./store"
 import LayoutMain from "./layout/LayoutMain.vue"
 
 const appState = ref({
 	inEditing: false,
-	editingNoteId: 0,
+	note: {} as Note,
 })
 </script>
 
@@ -15,15 +16,21 @@ const appState = ref({
 		<HomePage
 			v-if="!appState.inEditing"
 			@enter-editing="
-				(id) => (appState = { inEditing: true, editingNoteId: id })
+				(note) => {
+					appState.inEditing = true
+					appState.note = note
+				}
 			"
 		/>
 		<EditPage
 			v-if="appState.inEditing"
-			:id="appState.editingNoteId"
+			:note="appState.note"
 			@exit-editing="
-				() => (appState = { inEditing: false, editingNoteId: 0 })
-			"
+			() => {
+				appState.inEditing = false
+				appState.note = {} as Note
+			}
+		"
 		/>
 	</LayoutMain>
 </template>
