@@ -19,36 +19,28 @@ const titleIsBig =
 </script>
 
 <template>
-	<div class="layout">
-		<button class="back" @click="$emit('exitEditing')">
-			<iconArrowLeft class="icon" :style="{ fill: 'white' }" />
-		</button>
-		<TextInputPreview
-			class="heading1"
-			:class="{ bigTitle: titleIsBig }"
-			v-if="currentNote"
-			v-model="currentNote.title"
-			:tag="'h1'"
-		/>
-		<div class="note" v-if="currentNote">
-			<ul v-if="currentNote.tasks?.length">
-				<li v-for="task of currentNote.tasks" :key="task.id">
-					<CheckBox v-model="task.status" />
-					<TextInputPreview class="paragraph" v-model="task.text" />
-				</li>
-			</ul>
-			<ButtonAdd />
-		</div>
+	<button class="back" @click="$emit('exitEditing')">
+		<iconArrowLeft class="icon" :style="{ fill: 'white' }" />
+	</button>
+	<TextInputPreview
+		class="heading1"
+		:class="{ bigTitle: titleIsBig }"
+		v-if="currentNote"
+		v-model="currentNote.title"
+		:tag="'h1'"
+	/>
+	<div class="note" v-if="currentNote">
+		<ul v-if="currentNote.tasks?.length">
+			<li v-for="task of currentNote.tasks" :key="task.id">
+				<CheckBox v-model="task.status" />
+				<TextInputPreview class="paragraph" v-model="task.text" />
+			</li>
+		</ul>
+		<ButtonAdd />
 	</div>
 </template>
 
 <style scoped>
-.layout {
-	position: relative;
-	display: flex;
-	flex-flow: column;
-	gap: 20px;
-}
 button.back {
 	position: absolute;
 	display: flex;

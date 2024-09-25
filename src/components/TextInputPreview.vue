@@ -83,6 +83,13 @@ p {
 	width: 20px;
 	height: 20px;
 }
+/* Hack for empty text */
+h1:after,
+p:after {
+	content: "";
+	display: inline-block;
+	width: 0px;
+}
 h1:hover,
 p:hover {
 	border: 2px solid rgb(0 189 113 / 40%);

@@ -3,7 +3,7 @@ import IconAdd from "../assets/icon-add.vue"
 </script>
 
 <template>
-	<button class="button add" @click="$emit('click')">
+	<button class="button add">
 		<IconAdd class="icon" :style="{ fill: 'rgb(0 154 92)' }" />
 	</button>
 </template>
