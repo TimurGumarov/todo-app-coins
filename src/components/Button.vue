@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue"
+import IconArrowLeft from "@/assets/icon-arrow-left.vue"
 import IconAdd from "@/assets/icon-add.vue"
 import IconCheckCircle from "@/assets/icon-check-circle.vue"
 import IconCloseCircle from "@/assets/icon-close-circle.vue"
@@ -9,7 +10,14 @@ import IconRedo from "@/assets/icon-redo.vue"
 const props = defineProps({
 	type: {
 		type: String as PropType<
-			"add" | "confirm" | "warn" | "reject" | "undo" | "redo"
+			| "back"
+			| "add"
+			| "confirm"
+			| "warn"
+			| "reject"
+			| "undo"
+			| "redo"
+			| "remove"
 		>,
 		required: true,
 	},
@@ -41,6 +49,11 @@ const props = defineProps({
 			}
 		"
 	>
+		<IconArrowLeft
+			v-if="props.type === 'back'"
+			class="icon"
+			:style="{ fill: 'white' }"
+		/>
 		<IconAdd
 			v-if="props.type === 'add'"
 			class="icon"
@@ -106,6 +119,36 @@ const props = defineProps({
 .button .icon {
 	width: 20px;
 	height: 20px;
+}
+button.back {
+	justify-content: left;
+	background: none;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+	border: none;
+	box-shadow: none;
+}
+button.back:hover:not(:disabled) {
+	box-shadow: none;
+}
+button.back:hover::after {
+	content: "Назад";
+	position: absolute;
+	display: block;
+	top: -35px;
+	left: 35%;
+	padding: 4px 8px;
+	line-height: 1.1;
+	color: rgb(0 147 88 / 80%);
+	border: 1px solid rgb(21 84 59 / 80%);
+	border-radius: 8px;
+	background: #161f2c;
+	transform: translateX(-50%);
+}
+button.back .icon {
+	width: 30px;
+	height: 30px;
 }
 .button.add,
 .button.confirm {

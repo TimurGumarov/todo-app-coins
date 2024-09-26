@@ -139,9 +139,7 @@ function openPopupGoBack() {
 </script>
 
 <template>
-	<button class="back" @click="goBack">
-		<iconArrowLeft class="icon" :style="{ fill: 'white' }" />
-	</button>
+	<Button class="buttonBack" type="back" @click="goBack" />
 	<TextInputPreview
 		class="heading1"
 		:class="{ bigTitle: titleIsBig }"
@@ -198,42 +196,11 @@ function openPopupGoBack() {
 </template>
 
 <style scoped>
-button.back {
+.buttonBack {
 	position: absolute;
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	justify-content: left;
 	top: 20px;
 	left: 10px;
-	background: none;
-	color: inherit;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-	width: 40px;
-	height: 40px;
-	border: none;
-	z-index: 1000;
-}
-button.back:hover::after {
-	content: "Назад";
-	position: absolute;
-	display: block;
-	top: -35px;
-	left: 35%;
-	padding: 4px 8px;
-	line-height: 1.1;
-	color: rgb(0 147 88 / 80%);
-	border: 2px solid rgb(21 84 59 / 80%);
-	border-radius: 8px;
-	background: #161f2c;
-	transform: translateX(-50%);
-}
-button.back .icon {
-	width: 30px;
-	height: 30px;
+	z-index: 100;
 }
 .note {
 	display: flex;
