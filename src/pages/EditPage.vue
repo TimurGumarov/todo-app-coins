@@ -3,7 +3,7 @@ import { type Note, type Task, store } from "../store"
 import iconArrowLeft from "../assets/icon-arrow-left.vue"
 import TextInputPreview from "../components/TextInputPreview.vue"
 import CheckBox from "../components/CheckBox.vue"
-import ButtonAdd from "../components/ButtonAdd.vue"
+import Button from "../components/Button.vue"
 import { computed, PropType, ref } from "vue"
 
 const emit = defineEmits(["exitEditing"])
@@ -28,6 +28,11 @@ function saveNote() {
 	props.note.tasks = tasks.value
 }
 
+function deleteNote() {
+	store.deleteNote(props.note.id)
+	exit()
+}
+
 function createNewTask() {
 	const allTasksIDs = tasks.value.map((task) => task.id)
 	const newID = allTasksIDs.length ? Math.max(...allTasksIDs) + 1 : 1
@@ -36,7 +41,6 @@ function createNewTask() {
 }
 
 function exit() {
-	saveNote()
 	emit("exitEditing")
 }
 </script>
@@ -58,7 +62,11 @@ function exit() {
 				<TextInputPreview class="paragraph" v-model="task.text" />
 			</li>
 		</ul>
-		<ButtonAdd @click="createNewTask" />
+		<Button :type="'add'" @click="createNewTask" />
+		<div class="buttons">
+			<Button :type="'confirm'" :text="'Сохранить'" @click="saveNote" />
+			<Button :type="'reject'" :text="'Удалить'" @click="deleteNote" />
+		</div>
 	</div>
 </template>
 
@@ -119,5 +127,11 @@ button.back .icon {
 	flex-flow: row;
 	gap: 4px;
 	align-items: center;
+}
+.buttons {
+	display: flex;
+	flex-flow: row;
+	width: 100%;
+	gap: 10px;
 }
 </style>

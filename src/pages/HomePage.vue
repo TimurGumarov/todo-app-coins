@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NotePreview from "../components/NotePreview.vue"
 import { store } from "../store"
-import ButtonAdd from "../components/ButtonAdd.vue"
+import Button from "../components/Button.vue"
 </script>
 
 <template>
@@ -11,5 +11,5 @@ import ButtonAdd from "../components/ButtonAdd.vue"
 		:note="note"
 		@click="$emit('enterEditing', note)"
 	/>
-	<ButtonAdd @click="$emit('enterEditing', store.newNote())" />
+	<Button :type="'add'" @click="$emit('enterEditing', store.newNote())" />
 </template>
