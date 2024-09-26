@@ -19,8 +19,10 @@ const props = defineProps({
 })
 
 const blankPopupProps: PopupProps = { isOpen: false, text: "" }
+let tempNote: Note = undefined
 
 const isSaved = ref(true)
+const isUndoActive = ref(false)
 const title = ref<string>(props.note.title)
 const tasks = ref<Task[]>(JSON.parse(JSON.stringify(props.note.tasks)))
 const popupProps = ref<PopupProps>(blankPopupProps)
@@ -32,13 +34,33 @@ const titleIsBig = computed(() =>
 
 function toggleSaveStatus() {
 	if (isSaved) isSaved.value = false
-	console.log(isSaved)
+	isUndoActive.value = false
+}
+
+function undo() {
+	isUndoActive.value = true
+	tempNote = {
+		id: props.note.id,
+		title: title.value,
+		tasks: JSON.parse(JSON.stringify(tasks.value)),
+	}
+	title.value = props.note.title
+	tasks.value = JSON.parse(JSON.stringify(props.note.tasks))
+}
+
+function redo() {
+	isUndoActive.value = false
+	title.value = tempNote.title
+	tasks.value = JSON.parse(JSON.stringify(tempNote.tasks))
 }
 
 function saveNote() {
-	props.note.title = title.value
-	props.note.tasks = tasks.value
+	if (isUndoActive) {
+		props.note.title = title.value
+		props.note.tasks = tasks.value
+	}
 	isSaved.value = true
+	isUndoActive.value = false
 }
 
 function deleteNote() {
@@ -47,6 +69,7 @@ function deleteNote() {
 }
 
 function createNewTask() {
+	toggleSaveStatus()
 	const allTasksIDs = tasks.value.map((task) => task.id)
 	const newID = allTasksIDs.length ? Math.max(...allTasksIDs) + 1 : 1
 	const newTask: Task = { id: newID, status: false, text: "" }
@@ -126,6 +149,21 @@ function openPopupGoBack() {
 		v-model="title"
 		v-on:enter-editing="toggleSaveStatus"
 	/>
+	<div class="undo-redo">
+		<Button
+			v-if="!isUndoActive"
+			type="undo"
+			text="Отменить изменения"
+			v-on:click="undo"
+			:disabled="isSaved"
+		/>
+		<Button
+			v-if="isUndoActive"
+			type="redo"
+			text="Вернуть изменения"
+			v-on:click="redo"
+		/>
+	</div>
 	<div class="note">
 		<ul v-if="tasks.length">
 			<li v-for="task of tasks" :key="task.id">
