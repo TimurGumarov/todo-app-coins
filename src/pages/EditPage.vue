@@ -3,7 +3,6 @@ import { computed, PropType, ref } from "vue"
 import TextInputPreview from "@/components/TextInputPreview.vue"
 import CheckBox from "@/components/CheckBox.vue"
 import Button from "@/components/Button.vue"
-import iconArrowLeft from "@/assets/icon-arrow-left.vue"
 import Popup from "@/components/Popup.vue"
 
 import { store } from "@/store"
