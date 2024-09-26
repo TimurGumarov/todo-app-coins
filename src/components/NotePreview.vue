@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-import { Note, Task } from "../store"
-import IconDash from "../assets/icon-dash.vue"
-import IconCheck from "../assets/icon-check.vue"
+import IconDash from "@/assets/icon-dash.vue"
+import IconCheck from "@/assets/icon-check.vue"
+
+import { Note, Task } from "@/store"
 
 // This sets the number of tasks to preview for each note
 const tasksPreviewCount = 4

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import IconCheck from "../assets/icon-check.vue"
+import IconCheck from "@/assets/icon-check.vue"
+
 const modelChecked = defineModel<boolean>()
 </script>
 

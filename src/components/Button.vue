@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-import IconAdd from "../assets/icon-add.vue"
-import IconCheckCircle from "../assets/icon-check-circle.vue"
-import IconCloseCircle from "../assets/icon-close-circle.vue"
+import IconAdd from "@/assets/icon-add.vue"
+import IconCheckCircle from "@/assets/icon-check-circle.vue"
+import IconCloseCircle from "@/assets/icon-close-circle.vue"
 
 const props = defineProps({
 	type: {

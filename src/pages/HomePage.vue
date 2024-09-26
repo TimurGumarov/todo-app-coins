@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import NotePreview from "../components/NotePreview.vue"
-import { store } from "../store"
-import Button from "../components/Button.vue"
+import NotePreview from "@/components/NotePreview.vue"
+import Button from "@/components/Button.vue"
+
+import { store } from "@/store"
 </script>
 
 <template>

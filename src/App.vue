@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import HomePage from "./pages/HomePage.vue"
-import EditPage from "./pages/EditPage.vue"
 import { ref } from "vue"
-import { Note } from "./store"
-import LayoutMain from "./layout/LayoutMain.vue"
+import HomePage from "@/pages/HomePage.vue"
+import EditPage from "@/pages/EditPage.vue"
+import LayoutMain from "@/layout/LayoutMain.vue"
+
+import { Note } from "@/store"
 
 const appState = ref({
 	inEditing: false,

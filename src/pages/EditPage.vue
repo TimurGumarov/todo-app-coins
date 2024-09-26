@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { type Note, type Task, store } from "../store"
-import iconArrowLeft from "../assets/icon-arrow-left.vue"
-import TextInputPreview from "../components/TextInputPreview.vue"
-import CheckBox from "../components/CheckBox.vue"
-import Button from "../components/Button.vue"
 import { computed, PropType, ref } from "vue"
+import TextInputPreview from "@/components/TextInputPreview.vue"
+import CheckBox from "@/components/CheckBox.vue"
+import Button from "@/components/Button.vue"
+import iconArrowLeft from "@/assets/icon-arrow-left.vue"
+
+import { type Note, type Task, store } from "@/store"
 
 const emit = defineEmits(["exitEditing"])
 
