@@ -68,6 +68,14 @@ function deleteNote() {
 	exit()
 }
 
+function deleteTask(id: Task["id"]) {
+	toggleSaveStatus()
+	const task = tasks.value.find((note) => note.id === id)
+	const indexOfTask = tasks.value.indexOf(task)
+	tasks.value.splice(indexOfTask, 1)
+	return true
+}
+
 function createNewTask() {
 	toggleSaveStatus()
 	const allTasksIDs = tasks.value.map((task) => task.id)
@@ -171,6 +179,7 @@ function openPopupGoBack() {
 					v-model="task.text"
 					v-on:enter-editing="toggleSaveStatus"
 				/>
+				<Button type="remove" @click="deleteTask(task.id)" />
 			</li>
 		</ul>
 		<Button :type="'add'" @click="createNewTask" />
