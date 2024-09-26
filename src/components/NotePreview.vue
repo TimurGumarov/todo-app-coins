@@ -47,6 +47,7 @@ function openPopupDelete(id: Note["id"]) {
 
 function deleteNote(id: Note["id"]) {
 	store.deleteNote(props.note.id)
+	saveStore()
 }
 </script>
 

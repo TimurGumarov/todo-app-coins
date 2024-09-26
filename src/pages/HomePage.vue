@@ -2,9 +2,16 @@
 import NotePreview from "@/components/NotePreview.vue"
 import Button from "@/components/Button.vue"
 
-import { store } from "@/store"
+import { Note, store } from "@/store"
+import { getNotes } from "@/utils/localStorage"
+import { onMounted } from "vue"
 
 defineEmits(["enterEditing"])
+
+onMounted(() => {
+	const notes = JSON.parse(getNotes()) as Note[]
+	if (notes) store.setNotes(notes)
+})
 </script>
 
 <template>

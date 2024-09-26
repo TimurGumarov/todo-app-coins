@@ -8,6 +8,7 @@ import Popup from "@/components/Popup.vue"
 
 import { type Note, type Task, store } from "@/store"
 import { PopupProps } from "@/types"
+import { saveStore } from "@/utils/localStorage"
 
 const emit = defineEmits(["exitEditing"])
 
@@ -61,10 +62,12 @@ function saveNote() {
 	}
 	isSaved.value = true
 	isUndoActive.value = false
+	saveStore()
 }
 
 function deleteNote() {
 	store.deleteNote(props.note.id)
+	saveStore()
 	exit()
 }
 
