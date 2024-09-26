@@ -42,10 +42,10 @@ store.addNote({
 
 store.addNote({
 	id: 2,
-	title: "Note Two",
+	title: "Note Two11111 111 11 11 1111",
 	tasks: [
 		{ id: 1, status: false, text: "todo1" },
-		{ id: 2, status: false, text: "todo2" },
+		{ id: 2, status: true, text: "todo2" },
 		{ id: 3, status: false, text: "todo3" },
 		{ id: 4, status: false, text: "todo4" },
 	],
@@ -53,10 +53,10 @@ store.addNote({
 
 store.addNote({
 	id: 3,
-	title: "Note Three",
+	title: "Не самый маленький заголовок, я бы даже сказал, что вполне себе большой",
 	tasks: [
 		{ id: 1, status: false, text: "todo1" },
-		{ id: 2, status: false, text: "todo2" },
+		{ id: 2, status: true, text: "todo2" },
 		{ id: 3, status: false, text: "todo3" },
 		{ id: 4, status: false, text: "todo4" },
 		{ id: 5, status: false, text: "todo5" },
