@@ -1,16 +1,6 @@
 import { reactive } from "vue"
 
-export type Note = {
-	id: number
-	title: string
-	tasks: Task[]
-}
-
-export type Task = {
-	id: number
-	status: boolean
-	text: string
-}
+import { Note } from "../types"
 
 export const store = reactive({
 	notes: [] as Note[],

@@ -1,2 +1,3 @@
-export { ButtonProps } from "./Button.types"
-export { PopupProps } from "./Popup.types"
+export * from "./Button.types"
+export * from "./Popup.types"
+export * from "./store.types"

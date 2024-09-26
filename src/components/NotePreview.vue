@@ -5,8 +5,8 @@ import Button from "./Button.vue"
 import IconDash from "@/assets/icon-dash.vue"
 import IconCheck from "@/assets/icon-check.vue"
 
-import { store, type Note, type Task } from "@/store"
-import { PopupProps } from "@/types"
+import { store } from "@/store"
+import { PopupProps, Note, Task } from "@/types"
 import { saveStore } from "@/utils/localStorage"
 
 defineEmits(["click"])

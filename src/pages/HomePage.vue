@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { onMounted } from "vue"
 import NotePreview from "@/components/NotePreview.vue"
 import Button from "@/components/Button.vue"
 
-import { Note, store } from "@/store"
+import { store } from "@/store"
+import { Note } from "@/types"
 import { getNotes } from "@/utils/localStorage"
-import { onMounted } from "vue"
 
 defineEmits(["enterEditing"])
 

@@ -6,8 +6,8 @@ import Button from "@/components/Button.vue"
 import iconArrowLeft from "@/assets/icon-arrow-left.vue"
 import Popup from "@/components/Popup.vue"
 
-import { type Note, type Task, store } from "@/store"
-import { PopupProps } from "@/types"
+import { store } from "@/store"
+import { PopupProps, Note, Task } from "@/types"
 import { saveStore } from "@/utils/localStorage"
 
 const emit = defineEmits(["exitEditing"])

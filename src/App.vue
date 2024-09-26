@@ -4,7 +4,7 @@ import HomePage from "@/pages/HomePage.vue"
 import EditPage from "@/pages/EditPage.vue"
 import LayoutMain from "@/layout/LayoutMain.vue"
 
-import { Note } from "@/store"
+import { Note } from "@/types"
 
 const appState = ref({
 	inEditing: false,
