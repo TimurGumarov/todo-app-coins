@@ -3,6 +3,8 @@ import { nextTick, PropType, ref, useTemplateRef } from "vue"
 import IconEdit from "@/assets/icon-edit.vue"
 import IconCheck from "@/assets/icon-check.vue"
 
+const emit = defineEmits(["enterEditing"])
+
 const modelText = defineModel<string>()
 const props = defineProps({
 	tag: {
@@ -17,6 +19,7 @@ const textarea = useTemplateRef("textareaRef")
 
 const enterEditing = async () => {
 	isEditing.value = true
+	emit("enterEditing")
 	await nextTick()
 	textarea.value?.focus()
 }
