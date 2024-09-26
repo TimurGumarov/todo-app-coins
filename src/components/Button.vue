@@ -12,6 +12,7 @@ const props = defineProps({
 		type: String as PropType<
 			| "back"
 			| "add"
+			| "remove"
 			| "confirm"
 			| "warn"
 			| "reject"
@@ -65,9 +66,8 @@ const props = defineProps({
 			:style="{ fill: 'rgb(0 154 92)' }"
 		/>
 		<IconCloseCircle
-			v-if="props.type === 'reject'"
+			v-if="['reject', 'remove'].includes(props.type)"
 			class="icon"
-			:style="{ fill: 'rgb(197 79 79)' }"
 		/>
 		<IconUndo v-if="props.type === 'undo'" class="icon" />
 		<IconRedo v-if="props.type === 'redo'" class="icon" />
@@ -161,6 +161,23 @@ button.back .icon {
 	--accent-color: rgb(0 154 92);
 	--shadow-color: rgb(0 189 113 / 80%);
 }
+.button.remove {
+	--accent-color: rgb(197 79 79 / 50%);
+	--shadow-color: rgb(197 79 79 / 20%);
+	--muted-color: rgb(197 79 79 / 0%);
+
+	width: auto;
+	border-color: var(--muted-color);
+}
+.button.remove .icon {
+	fill: var(--shadow-color);
+}
+.button.remove:hover:not(:disabled) {
+	--accent-color: rgb(197 79 79);
+	--shadow-color: rgb(197 79 79 / 100%);
+
+	border-color: var(--accent-color);
+}
 .button.warn {
 	--accent-color: rgb(245 138 19 / 50%);
 	--shadow-color: rgb(245 138 19 / 20%);
@@ -174,6 +191,9 @@ button.back .icon {
 	--accent-color: rgb(197 79 79 / 50%);
 	--shadow-color: rgb(197 79 79 / 20%);
 	--muted-color: rgb(197 79 79 / 6%);
+}
+.button.reject .icon {
+	fill: rgb(197 79 79);
 }
 .button.reject:hover:not(:disabled) {
 	--accent-color: rgb(197 79 79);
