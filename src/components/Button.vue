@@ -19,11 +19,24 @@ const props = defineProps({
 		required: false,
 		default: false,
 	},
+	callback: {
+		type: Function,
+		required: false,
+	},
 })
 </script>
 
 <template>
-	<button class="button" :class="[props.type]" :disabled="props.disabled">
+	<button
+		class="button"
+		:class="[props.type]"
+		:disabled="props.disabled"
+		v-on:click="
+			() => {
+				props.callback?.()
+			}
+		"
+	>
 		<IconAdd
 			v-if="props.type === 'add'"
 			class="icon"
@@ -52,6 +65,7 @@ const props = defineProps({
 	position: relative;
 	display: flex;
 	flex-flow: row;
+	flex-grow: 1;
 	justify-content: center;
 	align-items: center;
 	gap: 5px;
@@ -59,6 +73,7 @@ const props = defineProps({
 	background: none;
 	color: inherit;
 	font: inherit;
+	white-space: nowrap;
 	cursor: pointer;
 	outline: inherit;
 	width: 100%;
