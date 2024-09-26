@@ -31,7 +31,7 @@ function close() {
 
 <template>
 	<div v-if="isOpen" class="popup">
-		<p>{{ props.text }}</p>
+		<h2>{{ props.text }}</h2>
 		<div class="buttons">
 			<Button
 				v-for="prop of props.buttons"
@@ -70,6 +70,11 @@ function close() {
 	background: #0f1923;
 	transform: translate(-50%, -50%);
 	z-index: 10001;
+}
+h2 {
+	font-weight: bold;
+	text-align: center;
+	margin: 1em;
 }
 .buttons {
 	display: flex;
