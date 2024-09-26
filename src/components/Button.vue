@@ -3,10 +3,14 @@ import { PropType } from "vue"
 import IconAdd from "@/assets/icon-add.vue"
 import IconCheckCircle from "@/assets/icon-check-circle.vue"
 import IconCloseCircle from "@/assets/icon-close-circle.vue"
+import IconUndo from "@/assets/icon-undo.vue"
+import IconRedo from "@/assets/icon-redo.vue"
 
 const props = defineProps({
 	type: {
-		type: String as PropType<"add" | "confirm" | "warn" | "reject">,
+		type: String as PropType<
+			"add" | "confirm" | "warn" | "reject" | "undo" | "redo"
+		>,
 		required: true,
 	},
 	text: {
@@ -52,6 +56,8 @@ const props = defineProps({
 			class="icon"
 			:style="{ fill: 'rgb(197 79 79)' }"
 		/>
+		<IconUndo v-if="props.type === 'undo'" class="icon" />
+		<IconRedo v-if="props.type === 'redo'" class="icon" />
 		{{ props.text }}
 	</button>
 </template>
@@ -129,5 +135,29 @@ const props = defineProps({
 .button.reject:hover:not(:disabled) {
 	--accent-color: rgb(197 79 79);
 	--shadow-color: rgb(197 79 79 / 100%);
+}
+.button.undo,
+.button.redo {
+	width: auto;
+	border: none;
+	box-shadow: none;
+}
+.button .icon,
+.button .icon {
+	fill: white;
+}
+.button.undo:hover:not(:disabled),
+.button.redo:hover:not(:disabled) {
+	box-shadow: none;
+	text-decoration: underline;
+}
+.button.undo:disabled,
+.button.redo:disabled {
+	color: rgb(256 256 256 / 20%);
+	background: none;
+}
+.button.undo:disabled .icon,
+.button.redo:disabled .icon {
+	fill: rgb(256 256 256 / 20%);
 }
 </style>
