@@ -10,7 +10,6 @@
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
-		"isolatedModules": true,
 		"moduleDetection": "force",
 		"jsx": "preserve",
 
