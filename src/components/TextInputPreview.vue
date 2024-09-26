@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, PropType, ref, useTemplateRef } from "vue"
-import IconEdit from "@/assets/icon-edit.vue"
-import IconCheck from "@/assets/icon-check.vue"
+import IconEdit from "../assets/icon-edit.vue"
+import IconCheck from "../assets/icon-check.vue"
 
 const emit = defineEmits(["enterEditing"])
 

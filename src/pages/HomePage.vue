@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
-import NotePreview from "@/components/NotePreview.vue"
-import Button from "@/components/Button.vue"
+import NotePreview from "../components/NotePreview.vue"
+import Button from "../components/Button.vue"
 
-import { store } from "@/store"
-import { Note } from "@/types"
-import { getNotes } from "@/utils/localStorage"
+import { store } from "../store"
+import { Note } from "../types"
+import { getNotes } from "../utils/localStorage"
 
 defineEmits(["enterEditing"])
 
 onMounted(() => {
-	const notes = JSON.parse(getNotes()) as Note[]
-	if (notes) store.setNotes(notes)
+	const notes = getNotes()
+	if (notes) store.setNotes(JSON.parse(notes) as Note[])
 })
 </script>
 

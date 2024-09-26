@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType, ref } from "vue"
-import { ButtonProps } from "@/types"
+import { ButtonProps } from "../types"
 import Button from "./Button.vue"
 
 const emit = defineEmits(["popupClosed"])

@@ -2,12 +2,12 @@
 import { PropType, ref } from "vue"
 import Popup from "./Popup.vue"
 import Button from "./Button.vue"
-import IconDash from "@/assets/icon-dash.vue"
-import IconCheck from "@/assets/icon-check.vue"
+import IconDash from "../assets/icon-dash.vue"
+import IconCheck from "../assets/icon-check.vue"
 
-import { store } from "@/store"
-import { PopupProps, Note, Task } from "@/types"
-import { saveStore } from "@/utils/localStorage"
+import { store } from "../store"
+import { PopupProps, Note, Task } from "../types"
+import { saveStore } from "../utils/localStorage"
 
 defineEmits(["click"])
 
@@ -17,7 +17,10 @@ const tasksPreviewCount = 4
 const blankPopupProps: PopupProps = { isOpen: false, text: "" }
 
 const props = defineProps({
-	note: Object as PropType<Note>,
+	note: {
+		type: Object as PropType<Note>,
+		required: true,
+	},
 })
 const popupProps = ref<PopupProps>(blankPopupProps)
 
@@ -25,7 +28,7 @@ function chooseIcon(task: Task) {
 	return task.status ? IconCheck : IconDash
 }
 
-function openPopupDelete(id: Note["id"]) {
+function openPopupDelete() {
 	popupProps.value = {
 		isOpen: true,
 		text: "Вы уверены, что хотите удалить заметку?",
@@ -34,7 +37,7 @@ function openPopupDelete(id: Note["id"]) {
 				type: "confirm",
 				text: "Да, удалить",
 				callback: () => {
-					deleteNote(id)
+					deleteNote()
 				},
 			},
 			{
@@ -45,7 +48,7 @@ function openPopupDelete(id: Note["id"]) {
 	}
 }
 
-function deleteNote(id: Note["id"]) {
+function deleteNote() {
 	store.deleteNote(props.note.id)
 	saveStore()
 }
@@ -56,7 +59,7 @@ function deleteNote(id: Note["id"]) {
 		<Button
 			type="remove"
 			class="removeButton"
-			@click.stop="openPopupDelete(props.note.id)"
+			@click.stop="openPopupDelete()"
 		/>
 		<h3>{{ props.note.title }}</h3>
 		<ul v-if="props.note.tasks?.length">

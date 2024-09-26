@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, PropType, ref } from "vue"
-import TextInputPreview from "@/components/TextInputPreview.vue"
-import CheckBox from "@/components/CheckBox.vue"
-import Button from "@/components/Button.vue"
-import Popup from "@/components/Popup.vue"
+import TextInputPreview from "../components/TextInputPreview.vue"
+import CheckBox from "../components/CheckBox.vue"
+import Button from "../components/Button.vue"
+import Popup from "../components/Popup.vue"
 
-import { store } from "@/store"
-import { PopupProps, Note, Task } from "@/types"
-import { saveStore } from "@/utils/localStorage"
+import { store } from "../store"
+import { PopupProps, Note, Task } from "../types"
+import { saveStore } from "../utils/localStorage"
 
 const emit = defineEmits(["exitEditing"])
 
@@ -19,7 +19,7 @@ const props = defineProps({
 })
 
 const blankPopupProps: PopupProps = { isOpen: false, text: "" }
-let tempNote: Note = undefined
+let tempNote: Note | undefined = undefined
 
 const isSaved = ref(true)
 const isUndoActive = ref(false)
@@ -50,8 +50,10 @@ function undo() {
 
 function redo() {
 	isUndoActive.value = false
-	title.value = tempNote.title
-	tasks.value = JSON.parse(JSON.stringify(tempNote.tasks))
+	if (tempNote) {
+		title.value = tempNote.title
+		tasks.value = JSON.parse(JSON.stringify(tempNote.tasks))
+	}
 }
 
 function saveNote() {
@@ -73,6 +75,7 @@ function deleteNote() {
 function deleteTask(id: Task["id"]) {
 	toggleSaveStatus()
 	const task = tasks.value.find((note) => note.id === id)
+	if (!task) return false
 	const indexOfTask = tasks.value.indexOf(task)
 	tasks.value.splice(indexOfTask, 1)
 	return true
